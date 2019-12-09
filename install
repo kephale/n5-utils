@@ -50,6 +50,19 @@ echo '  org.janelia.saalfeldlab.Copy "$@"' >> n5-copy
 
 chmod a+x n5-copy
 
+echo '#!/bin/bash' > n5-annotate
+echo '' >> n5-annotate
+echo "JAR=\$HOME/.m2/repository/org/janelia/saalfeldlab/n5-utils/${VERSION}/n5-utils-${VERSION}.jar" >> n5-annotate
+echo 'java \' >> n5-annotate
+echo "  -Xmx${MEM}g \\" >> n5-annotate
+echo '  -XX:+UseConcMarkSweepGC \' >> n5-annotate
+echo -n '  -cp $JAR:' >> n5-annotate
+echo -n $(cat cp.txt) >> n5-annotate
+echo ' \' >> n5-annotate
+echo '  org.janelia.saalfeldlab.Annotate "$@"' >> n5-annotate
+
+chmod a+x n5-annotate
+
 echo '#!/bin/bash' > n5-equals
 echo '' >> n5-equals
 echo "JAR=\$HOME/.m2/repository/org/janelia/saalfeldlab/n5-utils/${VERSION}/n5-utils-${VERSION}.jar" >> n5-equals
@@ -65,6 +78,7 @@ rm cp.txt
 
 mkdir -p $INSTALL_DIR
 mv n5-view $INSTALL_DIR/
+mv n5-annotate $INSTALL_DIR/
 mv n5-copy $INSTALL_DIR/
 mv n5-equals $INSTALL_DIR/
 
