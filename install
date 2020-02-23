@@ -61,6 +61,18 @@ echo ' \' >> n5-equals
 echo '  org.janelia.saalfeldlab.Equals "$@"' >> n5-equals
 
 chmod a+x n5-equals
+
+echo '#!/bin/bash' > n5-diff
+echo '' >> n5-diff
+echo "JAR=\$HOME/.m2/repository/org/janelia/saalfeldlab/n5-utils/${VERSION}/n5-utils-${VERSION}.jar" >> n5-diff
+echo 'java \' >> n5-diff
+echo "  -Xmx${MEM}g \\" >> n5-diff
+echo -n '  -cp $JAR:' >> n5-diff
+echo -n $(cat cp.txt) >> n5-diff
+echo ' \' >> n5-diff
+echo '  org.janelia.saalfeldlab.Diff "$@"' >> n5-diff
+
+chmod a+x n5-diff
 rm cp.txt
 
 mkdir -p $INSTALL_DIR
