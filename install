@@ -79,4 +79,4 @@ mkdir -p $INSTALL_DIR
 mv n5-view $INSTALL_DIR/
 mv n5-copy $INSTALL_DIR/
 mv n5-equals $INSTALL_DIR/
-
+mv n5-diff $INSTALL_DIR/
