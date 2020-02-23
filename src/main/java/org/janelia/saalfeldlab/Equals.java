@@ -172,7 +172,7 @@ public class Equals implements Callable<Boolean> {
 
 				final Cursor<T> cA = Views.flatIterable(imgA).cursor();
 				final Cursor<T> cB = Views.flatIterable(imgB).cursor();
-				while (cA.hasNext()) {
+				while (cA.hasNext() && equals) {
 					equals &= cA.next().valueEquals(cB.next());
 				}
 			}
